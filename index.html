@@ -1238,15 +1238,33 @@
          MENU PRINCIPAL
          Para remover um item do menu: apague a linha <a> correspondente.
          Para renomear um item: altere apenas o texto interno do <a>.
-         Para trocar o destino: altere o href para outro id de seção.
+         Para trocar o destino: altere somente o id usado em getElementById()
+         e o nome do evento em trackStrategicLink().
+
+         AJUSTE SOLICITADO / GOOGLE SITES:
+         - Os links abaixo usam javascript:void(0) + scrollIntoView().
+         - Isso evita conflito de âncoras quando o HTML está incorporado em iframe.
+         - Não altera CSS, layout, classes, textos nem a navegação visual.
+         - Mantém o tracking estratégico já existente em cada clique.
          ================================================== -->
       <nav class="nav-shell" aria-label="Menu principal">
-        <a href="#home" onclick="trackStrategicLink('menu_inicio')">Início</a>
-        <a href="#metodo" onclick="trackStrategicLink('menu_metodo')">Método</a>
-        <a href="#constelacao" class="destaque" onclick="trackStrategicLink('menu_constelacao')">Constelação</a>
-        <a href="#beneficios" onclick="trackStrategicLink('menu_beneficios')">Benefícios</a>
-        <a href="#blog" onclick="trackStrategicLink('menu_blog')">Blog</a>
-        <a href="#depoimentos" onclick="trackStrategicLink('menu_depoimentos')">Depoimentos</a>
+        <!-- Início: rolagem suave até #home + evento de tracking do menu -->
+        <a href="javascript:void(0)" onclick="document.getElementById('home').scrollIntoView({behavior:'smooth'}); trackStrategicLink('menu_inicio');">Início</a>
+
+        <!-- Método: rolagem suave até #metodo + evento de tracking do menu -->
+        <a href="javascript:void(0)" onclick="document.getElementById('metodo').scrollIntoView({behavior:'smooth'}); trackStrategicLink('menu_metodo');">Método</a>
+
+        <!-- Constelação: mantém classe destaque, rolagem suave até #constelacao + tracking -->
+        <a href="javascript:void(0)" class="destaque" onclick="document.getElementById('constelacao').scrollIntoView({behavior:'smooth'}); trackStrategicLink('menu_constelacao');">Constelação</a>
+
+        <!-- Benefícios: rolagem suave até #beneficios + evento de tracking do menu -->
+        <a href="javascript:void(0)" onclick="document.getElementById('beneficios').scrollIntoView({behavior:'smooth'}); trackStrategicLink('menu_beneficios');">Benefícios</a>
+
+        <!-- Blog: rolagem suave até #blog + evento de tracking do menu -->
+        <a href="javascript:void(0)" onclick="document.getElementById('blog').scrollIntoView({behavior:'smooth'}); trackStrategicLink('menu_blog');">Blog</a>
+
+        <!-- Depoimentos: rolagem suave até #depoimentos + evento de tracking do menu -->
+        <a href="javascript:void(0)" onclick="document.getElementById('depoimentos').scrollIntoView({behavior:'smooth'}); trackStrategicLink('menu_depoimentos');">Depoimentos</a>
       </nav>
     </section>
   </header>
